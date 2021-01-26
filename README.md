@@ -23,7 +23,7 @@
    | sckey | server酱推送的sckey |  
 
    ![图示](https://cdn.jsdelivr.net/gh/qdddz/HFUT_AutoSubmit/docs/imgs/secret.jpg)
-5. **运行结果将在每天15点左右通过微信的server酱通知给您**
+5. **运行结果将在每天15点左右通过微信的server酱通知给您**  
    ![图示](https://cdn.jsdelivr.net/gh/qdddz/HFUT_AutoSubmit/docs/imgs/result.jpg)
 
 ## 后记  
