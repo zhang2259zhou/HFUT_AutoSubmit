@@ -12,8 +12,8 @@ import os
 output_data = ""
 
 class hfuter:
-    global output_data
     def __init__(self, username, password) -> None:
+        global output_data
         super().__init__()
 
         self.session = requests.session()
@@ -35,6 +35,7 @@ class hfuter:
             self.logged_in = False
 
     def __login(self) -> bool:
+        global output_data
         def encrypt_password(text: str, key: str):
             """encrypt password"""
             def pad(data_to_pad, block_size, style='pkcs7'):
@@ -131,6 +132,7 @@ class hfuter:
             return False
 
     def basic_infomation(self):
+        global output_data
         if not self.logged_in:
             return {}
 
@@ -187,6 +189,7 @@ class hfuter:
         return info['data']
 
     def daily_checkin(self, address: str) -> bool:
+        global output_data
         if not self.logged_in:
             return False
 
