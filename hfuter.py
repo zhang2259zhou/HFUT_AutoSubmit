@@ -12,6 +12,7 @@ import os
 output_data = ""
 
 class hfuter:
+    global output_data
     def __init__(self, username, password) -> None:
         super().__init__()
 
@@ -295,6 +296,7 @@ class hfuter:
 # actually, it was already usable.
 
 def main():
+    global output_data
     env_dist = os.environ
 
     stu = hfuter(username=env_dist['username'], password=env_dist['password'])
