@@ -28,10 +28,10 @@ class hfuter:
 
         ret = self.__login()
         if ret:
-            output_data += "{username}登录成功\n".format(username=self.username)
+            output_data += "{username}登录成功%0D%0A%0D%0A".format(username=self.username)
             self.logged_in = True
         else:
-            output_data +=  "{username}登录失败！\n".format(username=self.username)
+            output_data +=  "{username}登录失败！%0D%0A%0D%0A".format(username=self.username)
             self.logged_in = False
 
     def __login(self) -> bool:
@@ -87,10 +87,10 @@ class hfuter:
 
         if ret.json():
             # needs OCR! will be done later.
-            output_data += '需验证码，目前该功能此脚本未支持\n'
+            output_data += '需验证码，目前该功能此脚本未支持%0D%0A%0D%0A'
             return False
         else:
-            output_data += '无需验证码\n'
+            output_data += '无需验证码%0D%0A%0D%0A'
 
         # 加密密码
         password = encrypt_password(self.password, key)
@@ -107,7 +107,7 @@ class hfuter:
             return False
 
         if ret['data']['mailRequired'] or ret['data']['phoneRequired']:
-            output_data += "你需要先进行手机或者邮箱的认证，请在PC上打开cas.hfut.edu.cn页面进行登录之后才可使用此脚本\n"
+            output_data += "你需要先进行手机或者邮箱的认证，请在PC上打开cas.hfut.edu.cn页面进行登录之后才可使用此脚本%0D%0A%0D%0A"
             return False
 
         # 然后post
@@ -171,14 +171,14 @@ class hfuter:
             data={"data": json.dumps(config_data)}
         ).json()
         if ret["code"] != "0":
-            output_data += ret["msg"] + '\n'
+            output_data += ret["msg"] + '%0D%0A%0D%0A'
             return {}
         ret = self.session.post(
             "http://stu.hfut.edu.cn/xsfw/sys/swpubapp/MobileCommon/getMenuInfo.do",
             data={"data": json.dumps(config_data)}
         ).json()
         if ret["code"] != "0":
-            output_data += ret["msg"] + '\n'
+            output_data += ret["msg"] + '%0D%0A%0D%0A'
             return {}
         self.session.headers.pop("Content-Type")
 
@@ -231,14 +231,14 @@ class hfuter:
             data={"data": json.dumps(config_data)}
         ).json()
         if ret["code"] != "0":
-            output_data += ret["msg"]  + '\n'
+            output_data += ret["msg"]  + '%0D%0A%0D%0A'
             return False
         ret = self.session.post(
             "http://stu.hfut.edu.cn/xsfw/sys/swpubapp/MobileCommon/getMenuInfo.do",
             data={"data": json.dumps(config_data)}
         ).json()
         if ret["code"] != "0":
-            output_data += ret["msg"] + '\n'
+            output_data += ret["msg"] + '%0D%0A%0D%0A'
             return False
         self.session.headers.pop("Content-Type")
 
@@ -256,13 +256,13 @@ class hfuter:
         end_time = datetime.datetime.strptime(end_time, "%Y-%m-%d %H:%M:%S %z")
         now_time = datetime.datetime.now(tz=pytz.timezone('Asia/Shanghai'))
 
-        output_data += "打卡起始时间:" + str(start_time) + '\n'
-        output_data += "打卡结束时间:" + str(end_time) + '\n'
-        output_data += "　　现在时间:"+ str(now_time) + '\n'
+        output_data += "打卡起始时间:" + str(start_time) + '%0D%0A%0D%0A'
+        output_data += "打卡结束时间:" + str(end_time) + '%0D%0A%0D%0A'
+        output_data += "　　现在时间:"+ str(now_time) + '%0D%0A%0D%0A'
         if start_time < now_time and now_time < end_time:
-            output_data += "在打卡时间内" + '\n'
+            output_data += "在打卡时间内" + '%0D%0A%0D%0A'
         else:
-            output_data += "不在打卡时间内" + '\n'
+            output_data += "不在打卡时间内" + '%0D%0A%0D%0A'
             return False
 
         self.session.headers.update(
@@ -304,9 +304,9 @@ def main():
 
     stu = hfuter(username=env_dist['username'], password=env_dist['password'])
     if stu.daily_checkin(env_dist['address']):
-        requests.post('https://sc.ftqq.com/'+env_dist['sckey']+'.send?text='+output_data)
+        requests.post('https://sc.ftqq.com/'+env_dist['sckey']+'.send?text=自动打卡成功'+output_data)
     else:
-       requests.post('https://sc.ftqq.com/'+env_dist['sckey']+'.send?text='+output_data)
+       requests.post('https://sc.ftqq.com/'+env_dist['sckey']+'.send?text=自动打开失败'+output_data)
 
 if __name__ == "__main__":
     main()
