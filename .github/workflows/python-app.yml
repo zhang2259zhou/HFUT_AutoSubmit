@@ -24,15 +24,14 @@ jobs:
         python-version: 3.7
     - name: Install dependencies
       run: | 
-        sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-        sudo apt install unzip google-chrome-stable
         python -m pip install --upgrade pip
-        pip install selenium requests
-        wget https://chromedriver.storage.googleapis.com/$(curl http://chromedriver.storage.googleapis.com/LATEST_RELEASE_88)/chromedriver_linux64.zip&&unzip chromedriver_linux64.zip&&sudo mv chromedriver /usr/local/bin/
+        pip install -r requirements.txt
+       
     - name: Run code 
       env:
         username: ${{ secrets.username }}
         password: ${{ secrets.password }}
+        address: ${{ secrets.address }}
         sckey: ${{ secrets.sckey }}
       run: |
-        python ./useselenium.py 
+        python ./hfuter.py 

@@ -15,11 +15,12 @@
    1. 前往 [sc.ftqq.com](http://sc.ftqq.com/3.version) 点击登入，创建账号（建议使用 GitHub 登录）。
    2. 点击[发送消息](http://sc.ftqq.com/?c=code) ，生成一个 Key。之后会将其增加到 Github Secrets 中，变量名为 `sckey`
    3. [绑定微信账号](http://sc.ftqq.com/?c=wechat&a=bind) ，开启微信推送。  ![图示](https://cdn.jsdelivr.net/gh/qdddz/HFUT_AutoSubmit/docs/imgs/serverpush.jpg)
-4. **点击项目 Settings -> Secrets -> New Secrets 添加以下 3 个 Secrets，其中server酱微信推送的sckey可见上一步**  
+4. **点击项目 Settings -> Secrets -> New Secrets 添加以下 4 个 Secrets，其中server酱微信推送的sckey可见上一步**  
    |Name|Value|
    |-----|-----|
    | username | 学号 |
    | password | 新信息门户密码 |
+   | address | 填报地址 |
    | sckey | server酱推送的sckey |  
 
    ![图示](https://cdn.jsdelivr.net/gh/qdddz/HFUT_AutoSubmit/docs/imgs/secret.jpg)
@@ -28,10 +29,11 @@
 
 ## 后记  
 
-1. 这破系统如果正常发requests请求要经过好几道验证，实属搞不来，只能用浏览器自动化这种蠢办法，如果有网安大佬带带我最好了！
+1. ~~这破系统如果正常发requests请求要经过好几道验证，实属搞不来，只能用浏览器自动化这种蠢办法，如果有网安大佬带带我最好了！~~ 现已经使用非自动化的方法，大幅增加稳定性
 2. 如果上面的图片无法正常加载，纯属github被墙了。。
 3. 有问题请反馈至QQ：710830913
 
 ## 致谢
 
 @JunzhouLiu/BILIBILI-HELPER 提供Action思路
+@HowardZorn/hfut_auto_check-in 感谢提供完整代码
