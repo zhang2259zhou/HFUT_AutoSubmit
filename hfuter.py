@@ -256,9 +256,9 @@ class hfuter:
         end_time = datetime.datetime.strptime(end_time, "%Y-%m-%d %H:%M:%S %z")
         now_time = datetime.datetime.now(tz=pytz.timezone('Asia/Shanghai'))
 
-        output_data += "打卡起始时间:" + start_time + '\n'
-        output_data += "打卡结束时间:" + end_time + '\n'
-        output_data += "　　现在时间:"+ now_time + '\n'
+        output_data += "打卡起始时间:" + str(start_time) + '\n'
+        output_data += "打卡结束时间:" + str(end_time) + '\n'
+        output_data += "　　现在时间:"+ str(now_time) + '\n'
         if start_time < now_time and now_time < end_time:
             output_data += "在打卡时间内" + '\n'
         else:
